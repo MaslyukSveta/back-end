@@ -1,4 +1,5 @@
 package com.liefersoft.backend.controller;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -20,7 +21,9 @@ import org.springframework.test.web.servlet.MockMvc;
  */
 public class UserControllerTest {
 
+
     private MockMvc mockMvc;
+
     /**
      * Mock annotation for UserService.
      * Creates a mock implementation of UserService to be used in the tests.
@@ -53,7 +56,7 @@ public class UserControllerTest {
      */
     @Test
     public void testAddUser() throws Exception {
-        User mockUser = new User("Світлана", "Маслюк", "+380952101768", "Female");
+        User mockUser = new User("John", "Doe", "1234567890", "Male");
         when(userService.registrationUser(any(User.class))).thenReturn(mockUser);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -63,9 +66,8 @@ public class UserControllerTest {
                         .contentType("application/json")
                         .content(userJson))
                 .andExpect(status().isOk())
-                .andExpect(content().string("New user is added"));
+                .andExpect(content().string("New user is registered successfully."));
 
         verify(userService, times(1)).registrationUser(any(User.class));
-
     }
 }

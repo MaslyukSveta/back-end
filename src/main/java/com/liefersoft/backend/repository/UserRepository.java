@@ -4,6 +4,8 @@ import com.liefersoft.backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Repository interface for User entity.
  * This interface extends JpaRepository, providing a set of standard methods for data access.
@@ -11,5 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-
+    Optional<User> findByFirstNameAndLastNameAndPhoneNumber(String firstName, String lastName, String phoneNumber);
 }
