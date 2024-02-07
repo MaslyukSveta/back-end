@@ -56,11 +56,9 @@ public class UserServiceImpl implements UserService {
         Optional<User> existingUser = userRepository.findByFirstNameAndLastNameAndPhoneNumber(
                 user.getFirstName(), user.getLastName(), user.getPhoneNumber()
         );
-
         if (existingUser.isPresent()) {
             throw new RuntimeException("User already exists with provided name, surname, and phone number");
         }
-
         try {
             User savedUser = userRepository.save(user);
             logger.info("User registered successfully: {}", savedUser);
