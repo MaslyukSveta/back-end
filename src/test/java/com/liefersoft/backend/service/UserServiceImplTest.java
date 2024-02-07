@@ -36,7 +36,7 @@ public class UserServiceImplTest {
      */
     @BeforeEach
     public void setup() {
-        // Initializes annotations for mock objects.
+
         MockitoAnnotations.openMocks(this);
     }
 
@@ -46,21 +46,20 @@ public class UserServiceImplTest {
      */
     @Test
     public void testRegisterUser() {
-        // Creating a test user instance.
+
         User user = new User("Svitlana", "Masliuk", "0952101768", "Female");
 
-        // Defining the behavior of the mocked UserRepository.
-        // When save method is called with any User object, it will return the test user.
+
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        // Calling the registrationUser method and storing the result.
+
         User savedUser = userService.registrationUser(user);
 
-        // Assertions to check if the returned user has the expected values.
-        assertNotNull(savedUser); // Check if the user is not null.
-        assertEquals("Svitlana", savedUser.getFirstName()); // Check the first name.
-        assertEquals("Masliuk", savedUser.getLastName()); // Check the last name.
-        assertEquals("0952101768", savedUser.getPhoneNumber()); // Check the phone number.
-        assertEquals("Female", savedUser.getGender()); // Check the gender.
+
+        assertNotNull(savedUser);
+        assertEquals("Svitlana", savedUser.getFirstName());
+        assertEquals("Masliuk", savedUser.getLastName());
+        assertEquals("0952101768", savedUser.getPhoneNumber());
+        assertEquals("Female", savedUser.getGender());
     }
 }

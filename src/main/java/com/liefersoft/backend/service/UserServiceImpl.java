@@ -52,13 +52,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registrationUser(User user) {
-        // Check if user already exists
+
         Optional<User> existingUser = userRepository.findByFirstNameAndLastNameAndPhoneNumber(
                 user.getFirstName(), user.getLastName(), user.getPhoneNumber()
         );
 
         if (existingUser.isPresent()) {
-            // You might want to throw a specific exception or handle this case differently
             throw new RuntimeException("User already exists with provided name, surname, and phone number");
         }
 
